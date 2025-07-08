@@ -7,8 +7,8 @@ export default function SummaryCards() {
 
   return (
     <div className="grid grid-cols-2 gap-2">
-      <div className="p-4 bg-gray-100 rounded-xl">Total: ₹{data.total || 0}</div>
-      <div className="p-4 bg-gray-100 rounded-xl">Top Category: {data.topCategory || '-'}</div>
+      <div className="bg-black/40 text-white backdrop-blur-sm">Total: ₹{data.total || 0}</div>
+      <div className="bg-black/40 text-white backdrop-blur-sm">Top Category: {data.topCategory || '-'}</div>
     </div>
   );
 }
