@@ -3,11 +3,9 @@ import { Transaction } from '@/models/transaction';
 
 export default async function handler(req, res) {
   try {
-    console.log("📊 /api/transactions/monthly called");
-    console.log("Mongo ready state:", mongoose.connection.readyState);
+    console.log("📊 Monthly API called");
 
     await connectDB();
-    console.log("✅ Connected to MongoDB");
 
     const transactions = await Transaction.find();
     console.log("📦 Found", transactions.length, "transactions");
@@ -34,11 +32,10 @@ export default async function handler(req, res) {
       .map(([month, amount]) => ({ month, amount }))
       .sort((a, b) => a.month.localeCompare(b.month));
 
-    console.log("📊 Final Chart Data:", chartData);
-
-    return res.status(200).json(chartData);
+    console.log("✅ Chart data:", chartData);
+    res.status(200).json(chartData);
   } catch (err) {
-    console.error("❌ Error in /api/transactions/monthly:", err);
-    return res.status(500).json({ error: "Failed to load chart data" });
+    console.error("❌ API Error:", err.message);
+    res.status(500).json({ error: "Failed to load chart data" });
   }
 }
