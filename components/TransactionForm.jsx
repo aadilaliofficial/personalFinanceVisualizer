@@ -46,11 +46,19 @@ export default function TransactionForm() {
         onChange={(e) => setForm({ ...form, description: e.target.value })}
         className="w-full p-3 rounded bg-white/20 text-white placeholder-white outline-none"
       />
-      <select
+     <select
   value={form.category}
   onChange={(e) => setForm({ ...form, category: e.target.value })}
-  className="w-full p-3 rounded bg-white/10 text-white placeholder-white outline-none"
+  className="w-full p-3 rounded bg-neutral-800 text-white outline-none appearance-none"
 >
+  <option value="">Select Category</option>
+  <option value="Food">Food</option>
+  <option value="Transport">Transport</option>
+  <option value="Shopping">Shopping</option>
+  <option value="Rent">Rent</option>
+  <option value="Other">Other</option>
+</select>
+
 
         <option value="">Select Category</option>
         {categories.map((c) => (
