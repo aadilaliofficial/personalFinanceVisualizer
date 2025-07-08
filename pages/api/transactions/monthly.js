@@ -2,26 +2,30 @@ import { connectDB } from '@/lib/db';
 import { Transaction } from '@/models/transaction';
 
 export default async function handler(req, res) {
-  await connectDB();
+  try {
+    await connectDB();
 
-  const transactions = await Transaction.find();
+    const transactions = await Transaction.find();
 
-  const monthlyTotals = {};
+    const monthlyTotals = {};
 
-  transactions.forEach((tx) => {
-    const date = new Date(tx.date);
-    const month = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+    transactions.forEach((tx) => {
+      if (!tx.date || !tx.amount) return; // skip invalid entries
 
-    if (!monthlyTotals[month]) {
-      monthlyTotals[month] = 0;
-    }
-    monthlyTotals[month] += tx.amount;
-  });
+      const date = new Date(tx.date);
+      if (isNaN(date)) return; // skip if date is not parsable
 
-  const chartData = Object.keys(monthlyTotals).map((month) => ({
-    month,
-    amount: monthlyTotals[month],
-  })).sort((a, b) => a.month.localeCompare(b.month));
+      const month = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+      monthlyTotals[month] = (monthlyTotals[month] || 0) + tx.amount;
+    });
 
-  res.status(200).json(chartData);
+    const chartData = Object.entries(monthlyTotals)
+      .map(([month, amount]) => ({ month, amount }))
+      .sort((a, b) => a.month.localeCompare(b.month));
+
+    return res.status(200).json(chartData);
+  } catch (err) {
+    console.error('❌ Error in /api/transactions/monthly:', err.message);
+    return res.status(500).json({ error: 'Failed to load chart data' });
+  }
 }
