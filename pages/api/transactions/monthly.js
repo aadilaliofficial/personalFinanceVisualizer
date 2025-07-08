@@ -4,6 +4,7 @@ import { Transaction } from '@/models/transaction';
 export default async function handler(req, res) {
   try {
     console.log("📊 /api/transactions/monthly called");
+    console.log("Mongo ready state:", mongoose.connection.readyState);
 
     await connectDB();
     console.log("✅ Connected to MongoDB");
