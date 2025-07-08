@@ -49,7 +49,7 @@ export default function TransactionForm() {
       <select
         value={form.category}
         onChange={(e) => setForm({ ...form, category: e.target.value })}
-        className="w-full p-3 rounded bg-white/20 text-white outline-none"
+        className="w-full p-3 rounded bg-black/60 text-white outline-none backdrop-blur-sm"
       >
         <option value="">Select Category</option>
         {categories.map((c) => (
