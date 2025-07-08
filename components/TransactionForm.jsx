@@ -22,31 +22,34 @@ export default function TransactionForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-2">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 bg-black/30 p-4 rounded-xl backdrop-blur-sm"
+    >
       <input
         type="number"
         placeholder="Amount"
         value={form.amount}
         onChange={(e) => setForm({ ...form, amount: e.target.value })}
-        className="w-full p-2 border"
+        className="w-full p-3 rounded bg-white/20 text-white placeholder-white outline-none"
       />
       <input
         type="date"
         value={form.date}
         onChange={(e) => setForm({ ...form, date: e.target.value })}
-        className="w-full p-2 border"
+        className="w-full p-3 rounded bg-white/20 text-white outline-none"
       />
       <input
         type="text"
         placeholder="Description"
         value={form.description}
         onChange={(e) => setForm({ ...form, description: e.target.value })}
-        className="w-full p-2 border"
+        className="w-full p-3 rounded bg-white/20 text-white placeholder-white outline-none"
       />
       <select
         value={form.category}
         onChange={(e) => setForm({ ...form, category: e.target.value })}
-        className="w-full p-2 border"
+        className="w-full p-3 rounded bg-white/20 text-white outline-none"
       >
         <option value="">Select Category</option>
         {categories.map((c) => (
@@ -55,7 +58,9 @@ export default function TransactionForm() {
           </option>
         ))}
       </select>
-      <Button type="submit">Add Transaction</Button>
+      <Button type="submit" className="w-full bg-white text-black hover:bg-gray-200">
+        Add Transaction
+      </Button>
     </form>
   );
 }
