@@ -47,10 +47,11 @@ export default function TransactionForm() {
         className="w-full p-3 rounded bg-white/20 text-white placeholder-white outline-none"
       />
       <select
-        value={form.category}
-        onChange={(e) => setForm({ ...form, category: e.target.value })}
-        className="w-full p-3 rounded bg-black/60 text-white outline-none backdrop-blur-sm"
-      >
+  value={form.category}
+  onChange={(e) => setForm({ ...form, category: e.target.value })}
+  className="w-full p-3 rounded bg-white/10 text-white placeholder-white outline-none"
+>
+
         <option value="">Select Category</option>
         {categories.map((c) => (
           <option key={c} value={c}>
