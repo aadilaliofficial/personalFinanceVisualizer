@@ -3,17 +3,18 @@ import { Transaction } from '@/models/transaction';
 
 export default async function handler(req, res) {
   try {
-    await connectDB();
+    console.log("📊 [monthly] API called");
 
+    await connectDB();
     const transactions = await Transaction.find();
 
     const monthlyTotals = {};
 
     transactions.forEach((tx) => {
-      if (!tx.date || !tx.amount) return; // skip invalid entries
+      if (!tx.date || !tx.amount) return;
 
       const date = new Date(tx.date);
-      if (isNaN(date)) return; // skip if date is not parsable
+      if (isNaN(date)) return;
 
       const month = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
       monthlyTotals[month] = (monthlyTotals[month] || 0) + tx.amount;
@@ -25,7 +26,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json(chartData);
   } catch (err) {
-    console.error('❌ Error in /api/transactions/monthly:', err.message);
-    return res.status(500).json({ error: 'Failed to load chart data' });
+    console.error("❌ Error in /api/transactions/monthly:", err);
+    return res.status(500).json({ error: "Failed to load chart data" });
   }
 }
