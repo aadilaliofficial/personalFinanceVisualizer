@@ -8,10 +8,10 @@ export default function BudgetComparisonChart() {
 
   return (
     <div>
-      <h2 className="text-lg font-bold mb-2">Budget vs Actual</h2>
+      <h2 className="text-lg font-bold mb-2 text-cyan-300">Budget vs Actual</h2>
       <BarChart width={350} height={200} data={data}>
-        <XAxis dataKey="category" />
-        <YAxis />
+        <XAxis dataKey="category" stroke="#0ff" />
+        <YAxis stroke="#0ff" />
         <Tooltip />
         <Legend />
         <Bar dataKey="budget" fill="#22c55e" name="Budget" />
