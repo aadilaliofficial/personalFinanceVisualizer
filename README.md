@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 💸 Personal Finance Visualizer
 
-## Getting Started
+A responsive web application to **track personal finances**, **categorize expenses**, and **compare budgets vs actual spending** — all visualized beautifully with charts and a modern neon UI.
 
-First, run the development server:
+---
 
-```bash
+## 🚀 Features
+
+### ✅ Stage 1: Basic Transaction Tracking
+- Add, edit, and delete transactions
+- Monthly expenses bar chart
+- Transaction list view
+- Basic form validation
+
+### ✅ Stage 2: Categories
+- Predefined categories (e.g. Food, Travel, Rent)
+- Category-wise Pie Chart
+- Summary cards (Total expenses, Recent transactions, Category breakdown)
+
+### ✅ Stage 3: Budgeting & Insights
+- Set monthly budget per category
+- Budget vs Actual comparison chart
+- Smart insights on overspending
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** [Next.js 14+](https://nextjs.org/), [React](https://reactjs.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.dev/)
+- **Charts:** [Recharts](https://recharts.org/)
+- **Database:** [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- **ORM:** [Mongoose](https://mongoosejs.com/)
+- **Deployment:** [Vercel](https://vercel.com/)
+
+---
+
+## 🧱 Folder Structure
+
+app/
+├─ api/
+│ └─ budgets/comparison/route.js # API route for budget vs actual
+├─ page.jsx # Root page (Dashboard)
+└─ components/
+├─ TransactionForm.jsx
+├─ TransactionList.jsx
+├─ BudgetForm.jsx
+├─ SummaryCards.jsx
+├─ CategoryPieChart.jsx
+├─ MonthlyExpensesBarChart.jsx
+├─ BudgetComparisonChart.jsx
+└─ SpendingInsights.jsx
+
+lib/
+└─ db.js # MongoDB connection
+
+models/
+├─ transaction.js
+└─ budget.js
+
+## ⚙️ Setup Instructions
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/aadilaliofficial/personalFinanceVisualizer
+   cd personalFinanceVisualizer
+Install dependencies
+
+npm install
+Set environment variables
+
+Create a .env.local file:
+
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority
+Run the development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Visit the app
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000
+📊 Demo Features
+✅ Budget Comparison Chart (/api/budgets/comparison)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+✅ Neon glassmorphism UI
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✅ Realtime updates with SWR
 
-## Learn More
+✅ MongoDB Atlas cloud backend
 
-To learn more about Next.js, take a look at the following resources:
+✨ Roadmap Ideas
+Add authentication (e.g. Clerk or NextAuth)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Export data to PDF/CSV
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Monthly filters & date-range picker
 
-## Deploy on Vercel
+AI-based spending predictions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🤝 Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🧑‍💻 Author
+Aadil Ali
